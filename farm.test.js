@@ -11,4 +11,127 @@ describe("get Yield For Plant", () => {
     test("Get yield for plant with no environment factors", () => {
         expect(getYieldForPlant(corn)).toBe(30);
     });
-})
+
+    test("Calculate total yield with high sun", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            costOfCrop: 1,
+            revenue: 2,
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+
+                    high: 50,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "high",
+        };
+
+        expect(getYieldForPlant(corn, environmentFactors)).toBe(45);
+    });
+
+    test("Calculate total yield with medium sun", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            costOfCrop: 1,
+            revenue: 2,
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "medium",
+        };
+
+        expect(getYieldForPlant(corn, environmentFactors)).toBe(30);
+    });
+
+    test("Calculate total yield with low sun", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            costOfCrop: 1,
+            revenue: 2,
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "low",
+        };
+
+        expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
+    });
+
+    test("Calculate total yield with low sun and medium wind", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            costOfCrop: 1,
+            revenue: 2,
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: -60,
+                    medium: 0,
+                    high: 60,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "low",
+            wind: "medium"
+        };
+
+        expect(getYieldForPlant(corn, environmentFactors)).toBe(15);
+    });
+
+    test("Calculate total yield with low sun and high wind", () => {
+        const corn = {
+            name: "corn",
+            yield: 30,
+            costOfCrop: 1,
+            revenue: 2,
+            factors: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+                wind: {
+                    low: -60,
+                    medium: 0,
+                    high: 60,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "low",
+            wind: "high"
+        };
+
+        expect(getYieldForPlant(corn, environmentFactors)).toBe(24);
+    });
+});
