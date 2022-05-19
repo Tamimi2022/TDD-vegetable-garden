@@ -45,8 +45,17 @@ const getYieldForCrop = (input, environmentFactors) => {
     return input.numCrops * getYieldForPlant(input.crop, environmentFactors);
 }
 
+// Total Yield
+function getTotalYield(input, environmentFactors) {
+    let total = 0;
+    input.crops.forEach(crop => total = total + getYieldForCrop(crop, environmentFactors));
+    return total;
+}
+
+
 module.exports = {
     getYieldForPlant,
-    getYieldForCrop
+    getYieldForCrop,
+    getTotalYield
     
 }
