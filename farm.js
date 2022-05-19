@@ -52,10 +52,19 @@ function getTotalYield(input, environmentFactors) {
     return total;
 }
 
+// Costs
+const getCostsForPlant = (plant) => {
+    return plant.cost;
+}
+const getCostsForCrop = (input) => {
+    return input.numCrops * getCostsForPlant(input.crop);
+}
+
 
 module.exports = {
     getYieldForPlant,
     getYieldForCrop,
-    getTotalYield
+    getTotalYield,
+    getCostsForCrop
     
 }

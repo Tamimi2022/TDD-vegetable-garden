@@ -1,5 +1,5 @@
 // For Testing
-const { getYieldForPlant, getYieldForCrop, getTotalYield } = require("./farm");
+const { getYieldForPlant, getYieldForCrop, getTotalYield, getCostsForCrop } = require("./farm");
 
 // Plant
 describe("get Yield For Plant", () => {
@@ -135,6 +135,20 @@ describe("get Yield For Plant", () => {
     });
 });
 
+// Crops 
+describe("getYieldForCrop", () => {
+    test("Get yield for crop, simple", () => {
+        const corn = {
+            name: "corn",
+            yield: 3,
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getYieldForCrop(input)).toBe(30);
+    });
+});
 // Crops with Factors
 describe("get Yield For Crop with environment factor sun", () => {
     const corn = {
@@ -194,5 +208,20 @@ describe("get Total Yield", () => {
         };
         const crops = [{ crop: corn, numCrops: 0 }];
         expect(getTotalYield({ crops })).toBe(0);
+    });
+});
+
+// Costs
+describe("getCostsForCrop", () => {
+    test("Calculate cost for ten corn crops", () => {
+        const corn = {
+            name: "corn",
+            cost: 1,
+        };
+        const input = { 
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getCostsForCrop(input)).toBe(10);
     });
 });
