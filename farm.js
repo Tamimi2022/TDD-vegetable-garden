@@ -40,7 +40,13 @@ function calculateInfluenceOnYield(factor) {
     return (100 + factor) / 100;
 }
 
+// Crops
+const getYieldForCrop = (input, environmentFactors) => {
+    return input.numCrops * getYieldForPlant(input.crop, environmentFactors);
+}
+
 module.exports = {
     getYieldForPlant,
+    getYieldForCrop
     
 }

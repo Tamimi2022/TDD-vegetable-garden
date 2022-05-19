@@ -1,5 +1,5 @@
 // For Testing
-const { getYieldForPlant } = require("./farm");
+const { getYieldForPlant, getYieldForCrop } = require("./farm");
 
 // Plant
 describe("get Yield For Plant", () => {
@@ -135,3 +135,28 @@ describe("get Yield For Plant", () => {
         expect(getYieldForPlant(corn, environmentFactors)).toBe(24);
     });
 });
+
+// Crops with Factors
+describe("get Yield For Crop with environment factor sun", () => {
+    const corn = {
+        name: "corn",
+        yield: 30,
+        factors: {
+          sun: {
+            low: -50,
+            medium: 0,
+            high: 50,
+          },
+        },
+      };
+    test("Get yield for crop, sun low", () => {
+        const environmentFactors = {
+            sun: "low",
+        };
+        const input = {
+            crop: corn,
+            numCrops: 10,
+        };
+        expect(getYieldForCrop(input,environmentFactors)).toBe(150);
+    });
+})
