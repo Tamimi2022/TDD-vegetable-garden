@@ -7,7 +7,14 @@ function getYieldForPlant(plant, environmentFactors) {
     }
     let totalFactor = yieldOfPlant;
 
+    if (environmentFactors !== undefined) {
+        totalFactor = calculateYieldWithInfluence(environmentFactors.sun, plant.factors.sun, totalFactor);
+    }
+
     return totalFactor;
 }
 
-module.exports = getYieldForPlant
+module.exports = {
+    getYieldForPlant,
+    
+}
