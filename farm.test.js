@@ -1,5 +1,5 @@
 // For Testing
-const { getYieldForPlant, getYieldForCrop, getTotalYield, getCostsForCrop } = require("./farm");
+const { getYieldForPlant, getYieldForCrop, getTotalYield, getCostsForCrop, getRevenueForCrop } = require("./farm");
 
 // Plant
 describe("get Yield For Plant", () => {
@@ -223,5 +223,44 @@ describe("getCostsForCrop", () => {
             numCrops: 10,
         };
         expect(getCostsForCrop(input)).toBe(10);
+    });
+    test("Calculate cost for ten tomato crops", () => {
+        const tomato = {
+            name: "tomato",
+            cost: 2,
+        };
+        const input = { 
+            crop: tomato,
+            numCrops: 10,
+        };
+        expect(getCostsForCrop(input)).toBe(20);
+    });
+});
+
+// Revenue
+describe("getRevenueForCrop", () => {
+    test("Calculate revenue for ten tomato crops", () => {
+        const tomato = {
+            name: "tomato",
+            salePrice: 3,
+            yield: 4
+        };
+        const input = { 
+            crop: tomato,
+            numCrops: 10,
+        };
+        expect(getRevenueForCrop(input)).toBe(120);
+    });
+    test("Calculate revenue for zero tomato crops", () => {
+        const tomato = {
+            name: "tomato",
+            salePrice: 3,
+            yield: 4
+        };
+        const input = { 
+            crop: tomato,
+            numCrops: 0,
+        };
+        expect(getRevenueForCrop(input)).toBe(0);
     });
 });
