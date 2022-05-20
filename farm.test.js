@@ -395,7 +395,7 @@ describe("getTotalProfit", () => {
 // Total with Factors
 describe("getTotalProfit with environment factors", () => {
    
-    test("Calculate the total profit for crops with other env factors", () => {
+    test("The total profit for crops with other Factors", () => {
         const corn = {
             name: "corn",
             salePrice: 2,
